@@ -1,0 +1,13 @@
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\AscProva.RepositorioEntity.dll.config
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\AscProva.RepositorioEntity.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\AscProva.RepositorioEntity.pdb
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\AscProva.Modelo.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\EntityFramework.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\AscProva.Modelo.pdb
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\EntityFramework.xml
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\obj\Debug\AscProva.RepositorioEntity.csprojAssemblyReference.cache
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\obj\Debug\AscProva.RepositorioEntity.csproj.CopyComplete
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\obj\Debug\AscProva.RepositorioEntity.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioEntity\obj\Debug\AscProva.RepositorioEntity.pdb

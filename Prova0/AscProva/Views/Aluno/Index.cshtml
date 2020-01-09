@@ -1,0 +1,225 @@
+﻿@model IEnumerable<AscProva.Modelo.Alunos>
+
+<html lang="pt-br">
+
+<head>
+    <title>Primeira página Bootstrap</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    @Styles.Render("~/bundles/ascprovacss")
+
+</head>
+
+<body>
+
+
+    <div class="d-flex" id="wrapper">
+
+        <div class="bg-dark border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading cs_01">
+                <i class="fab fa-connectdevelop mr-1" style="color: #38d15c;"></i>
+                Sistema ASC
+            </div>
+
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-dark dropdown-toggle" href="#"
+                   id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-plus mr-2" style="color:#f06f48"></i> Novo Aluno
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Turma da manhã</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Turma da tarde</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Turma da noite</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+
+                <div class="container">
+
+                    <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
+
+                    <a class="navbar-brand ml-auto display-1 mr-0">Olá Visitante, seja bem vindo! ;)</a>>
+
+                </div>
+
+            </nav>
+
+
+            <div class="jumbotron jumbotron-fluid cs_02">
+                <div class="container ">
+
+                    <form>
+                        <div class="form-row">
+
+                            <div class="form-group col-sm-11 mb-0">
+
+                                <input type="text" class="form-control" id="inputNome" placeholder="Nome">
+
+                            </div>
+
+                            <div class="form-group col-sm-1 mt-1">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search-plus"
+                                       style="color: white;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="container my-4 d-none d-md-block">
+
+                    <div class="row">
+                        <div class="col-md-1 text-center">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="col-2">
+                            Aluno
+                        </div>
+                        <div class="col-1 text-center">
+                            Média
+                        </div>
+                        <div class="col-1">
+                            Turma
+                        </div>
+                        <div class="col-1 text-center">
+                            Status
+                        </div>
+                        <div class="col-1 text-center" data-toggle="tooltip" title="Prova Especial">
+                            PE
+                        </div>
+                        <div class="col-1 text-center" data-toggle="tooltip" title="Primeira Prova">
+                            P1
+                        </div>
+                        <div class="col-1 text-center" data-toggle="tooltip" title="Segunda Prova">
+                            P2
+                        </div>
+                        <div class="col-1 text-center" data-toggle="tooltip" title="Terceira Prova">
+                            P3
+                        </div>
+                        <div class="col-1 text-center" data-toggle="tooltip" title="Prova Final">
+                            PF
+                        </div>
+                        <div class="col-1 text-center" data-toggle="tooltip" title="Prova Final">
+
+                        </div>
+                    </div>
+
+                </div>
+
+                @Html.Partial("_ListaAlunos", Model)
+
+            </div>
+
+
+
+
+
+            <p>
+                <a href="#" data-toggle="modal" data-target="#ModalExclusao">Excluir</a>
+            </p>
+
+            <p>
+                <a href="#" data-toggle="modal" data-target="#ModalInclusao">Incluir</a>
+            </p>
+
+            <p>
+                <a href="#" data-toggle="modal" data-target="#ModalEdicao">Editar</a>
+            </p>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal Inclusão -->
+
+    <div class="modal fade" id="ModalInclusao" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md" role="document">
+
+            @Html.Partial("_ListaAlunos", Model)
+
+        </div>
+    </div>
+
+    <!-- Modal Exclusão -->
+
+    <div class="modal fade" id="ModalExclusao" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Deseja continuar?</h5>
+                    <button type="button" class="close" data-dismiss="modal" style="outline: 0;">
+                        <span>&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Não </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="delete">Sim </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal Edição -->
+
+    <div class="modal fade" id="ModalEdicao" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+
+                @using (Html.BeginForm("Editar", "Aluno"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.Partial("_Editar", Model)
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            Editar <i class="fas fa-angle-right ml-2" style="color: white;"></i>
+                        </button>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/ascprovajs")
+    }
+
+    <script src="https://kit.fontawesome.com/a718e840fb.js" crossorigin="anonymous"></script>
+
+    @section Scripts{
+        @Scripts.Render("~/bundles/ajax")
+    }
+
+</body>
+
+</html>
