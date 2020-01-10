@@ -5,7 +5,7 @@ function MouseOverTurma(Turma) {
 
 function CalculoMedia() {
 
-    var Media, StatusAprovacao, ClasseStatus;
+    var Media, StatusAprovacao, ClasseStatus, MediaRecuperacao;
     var ProvaUm = $('#ProvaUm').val();
     var ProvaDois = $('#ProvaDois').val();
     var ProvaTres = $('#ProvaTres').val();
@@ -47,16 +47,25 @@ function CalculoMedia() {
             StatusAprovacao = "Recuperação"
             ClasseStatus = "cs_09_Recuperacao";
 
+            MediaRecuperacao = CalculoMediaRecuperacao(Media);
 
+            if (MediaRecuperacao !== Media) {
 
-            Media = CalculoMediaRecuperacao(Media);
+                Media = MediaRecuperacao;
 
+                if (MediaRecuperacao >= 5) {
+                    StatusAprovacao = "Aprovado na<br>Recuperação"
+                    ClasseStatus = "cs_09_Aprovado";
+                }
+                else {
+    
+                    StatusAprovacao = "Reprovado na<br>Recuperação"
+                    ClasseStatus = "cs_09_Reprovado";
+    
+                }
 
-
-            if (Media >= 5) {
-                StatusAprovacao = "Aprovado na<br>Recuperação"
-                ClasseStatus = "cs_09_Aprovado";
             }
+
     }
 
 
