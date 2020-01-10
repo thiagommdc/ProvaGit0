@@ -7,6 +7,7 @@ C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMys
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMysql\bin\Debug\Google.Protobuf.xml
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMysql\bin\Debug\MySql.Data.xml
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMysql\bin\Debug\Renci.SshNet.xml
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMysql\obj\Debug\AscProva.RepositorioMysql.csprojAssemblyReference.cache
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMysql\obj\Debug\AscProva.RepositorioMysql.csproj.CopyComplete
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMysql\obj\Debug\AscProva.RepositorioMysql.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.RepositorioMysql\obj\Debug\AscProva.RepositorioMysql.pdb

@@ -53,9 +53,11 @@
 
                 <div class="container">
 
+
                     <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
 
                     <a class="navbar-brand ml-auto display-1 mr-0">Olá Visitante, seja bem vindo! ;)</a>>
+
 
                 </div>
 
@@ -65,23 +67,31 @@
             <div class="jumbotron jumbotron-fluid cs_02">
                 <div class="container ">
 
-                    <form>
-                        <div class="form-row">
+                    @using (Ajax.BeginForm("BuscaNome", "Aluno", new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DivListaAlunos" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                            <div class="form-group col-sm-11 mb-0">
 
-                                <input type="text" class="form-control" id="inputNome" placeholder="Nome">
+                        <form>
+                            <div class="form-row">
+
+                                <div class="form-group col-sm-11 mb-0">
+
+                                    <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome">
+
+                                </div>
+
+                                <div class="form-group col-sm-1 mt-1">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search-plus"
+                                           style="color: white;"></i>
+                                    </button>
+                                </div>
 
                             </div>
+                        </form>
 
-                            <div class="form-group col-sm-1 mt-1">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-search-plus"
-                                       style="color: white;"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    }
 
                 </div>
             </div>
@@ -129,32 +139,12 @@
 
             </div>
 
-
-
-
-
-            <p>
-                <a href="#" data-toggle="modal" data-target="#ModalExclusao">Excluir</a>
-            </p>
-
-            <p>
-                <a href="#" data-toggle="modal" data-target="#ModalInclusao">Incluir</a>
-            </p>
-
-            <p>
-                <a href="#" data-toggle="modal" data-target="#ModalEdicao" id="BotaoAbreModalEdicao">Editar</a>
-            </p>
-
-
-
-
-
+            <a href="#" data-toggle="modal" data-target="#ModalEdicao" id="BotaoAbreModalEdicao"></a>
 
 
         </div>
 
     </div>
-
 
 
 
@@ -167,6 +157,7 @@
 
                 @using (Ajax.BeginForm("Cadastrar", "Aluno", new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DivListaAlunos" }))
                 {
+                    @Html.AntiForgeryToken()
 
                     @Html.Partial("_Cadastrar", new AscProva.Modelo.Alunos())
 
@@ -237,7 +228,7 @@
                         <button type="submit" class="btn btn-primary">
                             Editar <i class="fas fa-angle-right ml-2" style="color: white;"></i>
                         </button>
-
+                        
                     </div>
                 }
 

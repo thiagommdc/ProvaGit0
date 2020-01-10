@@ -4,6 +4,5 @@ C:\Users\55219\Documents\projetos_testes\AscProva\Prova\AscProva.Modelo\obj\Debu
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova\AscProva.Modelo\obj\Debug\AscProva.Modelo.pdb
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.Modelo\bin\Debug\AscProva.Modelo.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.Modelo\bin\Debug\AscProva.Modelo.pdb
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.Modelo\obj\Debug\AscProva.Modelo.csprojAssemblyReference.cache
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.Modelo\obj\Debug\AscProva.Modelo.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva.Modelo\obj\Debug\AscProva.Modelo.pdb

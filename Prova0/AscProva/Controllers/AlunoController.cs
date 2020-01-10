@@ -38,8 +38,9 @@ namespace AscProva.Controllers
 
         public ActionResult PreencheEdicao(int Id)
         {
-
+            
             ViewBag.Javascript = "AbreModalEdicao()";
+            ViewBag.MediaUltimo = BancoDeDadosMysql.Selecionar(new Alunos()).OrderByDescending(x => x.Media).ElementAt(4).Media;
 
             return PartialView("_Editar", BancoDeDadosMysql.Selecionar(new Alunos() { Id = Id }).First());
 
@@ -61,9 +62,17 @@ namespace AscProva.Controllers
 
             ViewBag.Javascript = "FechaExclusao()";
 
-            BancoDeDadosMysql.Excluir(new Alunos(){ Id = Id );
+            BancoDeDadosMysql.Excluir(new Alunos() { Id = Id });
 
             return PartialView("_ListaAlunos", BancoDeDadosMysql.Selecionar(new Alunos()));
+
+        }
+
+
+        public ActionResult BuscaNome(string Nome)
+        {
+
+            return PartialView("_ListaAlunos", BancoDeDadosMysql.Selecionar(new Alunos() { Nome = Nome }));
 
         }
 

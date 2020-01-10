@@ -1,9 +1,7 @@
 
- function MouseOverTurma(Turma) {
-                            $("#Turma").val(Turma);
-                        }
-
-
+function MouseOverTurma(Turma) {
+    $("#Turma").val(Turma);
+}
 
 function CalculoMedia() {
 
@@ -49,13 +47,18 @@ function CalculoMedia() {
             StatusAprovacao = "Recuperação"
             ClasseStatus = "cs_09_Recuperacao";
 
-            Media = CalculoMediaRecuperacao(ProvaUm, ProvaDois, ProvaTres, Media);
+
+
+            Media = CalculoMediaRecuperacao(Media);
+
+
 
             if (Media >= 5) {
                 StatusAprovacao = "Aprovado na<br>Recuperação"
                 ClasseStatus = "cs_09_Aprovado";
             }
     }
+
 
     DisponibilidadeCamposEdicaoNota(StatusAprovacao);
 
@@ -70,6 +73,7 @@ function CalculoMedia() {
     $("#Media").val(Media);
 
 }
+
 
 function DisponibilidadeCamposEdicaoNota(StatusAprovacao) {
 
@@ -133,13 +137,13 @@ function CalculoMediaNormal(ProvaUm, ProvaDois, ProvaTres) {
     return MediaPonderada;
 }
 
-function CalculoMediaRecuperacao(MediaNormal, Media) {
+function CalculoMediaRecuperacao(MediaNormal) {
 
     var ProvaFinal = $('#ProvaFinal').val();
     ProvaFinal = Number(ProvaFinal);
 
     if (ProvaFinal == 0) {
-        return Media
+        return MediaNormal
     }
 
     MediaNormal = Number(MediaNormal);
