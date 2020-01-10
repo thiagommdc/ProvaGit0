@@ -1,42 +1,44 @@
 ﻿@model IEnumerable<AscProva.Modelo.Alunos>
 
+<div id="DivListaAlunos">
 
-<table class="table">
+    <table class="table">
 
+        @foreach (var item in Model)
+        {
 
-    @foreach (var item in Model)
-    {
-        
-        <div class="container cs_05 my-2 cs_07">
+            <div class="container cs_05 my-2 cs_07">
 
-            <div class="row">
-                <div class="col-12 col-md-2">
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </div>
+                <div class="row">
 
-                @if (item.MediaEspecial != 0)
-                {
-                    <div class="col-12 col-md-1 text-center">
-                        @Html.DisplayFor(modelItem => item.MediaEspecial)
+                    <div class="col-12 col-md-2">
+                        @Html.DisplayFor(modelItem => item.Nome)
                     </div>
-                }
-                else
-                {
-                    <div class="col-12 col-md-1 text-center">
-                        @Html.DisplayFor(modelItem => item.Media)
-                    </div>
-                }
 
-                <div class="col-12 col-md-1">
-                    @Html.DisplayFor(modelItem => item.Turma)
-                </div>
-                <div class="col-12 col-md-1 text-center cs_06">
+
+                    @if (item.MediaEspecial != 0)
+                    {
+                        <div class="col-12 col-md-1 text-center">
+                            @Html.DisplayFor(modelItem => item.MediaEspecial)
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12 col-md-1 text-center">
+                            @Html.DisplayFor(modelItem => item.Media)
+                        </div>
+                    }
+
+                    <div class="col-12 col-md-1">
+                        @Html.DisplayFor(modelItem => item.Turma)
+                    </div>
+
 
                     @switch (item.Media)
                     {
                         case var n when item.Media < 4:
 
-                            <div class="col-12 col-md-1 text-center cs_06 cs_09_Reprovado">
+                            <div class="col-12 col-md-2 text-center cs_06 cs_09_Reprovado">
                                 Reprovado
                             </div>
 
@@ -44,7 +46,7 @@
                         case var n when item.Media > 6:
 
 
-                            <div class="col-12 col-md-1 text-center cs_06 cs_09_Aprovado">
+                            <div class="col-12 col-md-2 text-center cs_06 cs_09_Aprovado">
                                 Aprovado
                             </div>
 
@@ -52,7 +54,7 @@
                         default:
 
 
-                            <div class="col-12 col-md-1 text-center cs_06 cs_09_Recuperacao">
+                            <div class="col-12 col-md-2 text-center cs_06 cs_09_Recuperacao">
                                 Recuperação
                             </div>
 
@@ -60,44 +62,71 @@
                     }
 
 
-                </div>
-                <div class="col-12 col-md-1 text-center">
-                    @Html.DisplayFor(modelItem => item.ProvaUm)
-                </div>
-                <div class="col-12 col-md-1 text-center">
-                    @Html.DisplayFor(modelItem => item.ProvaDois)
-                </div>
-                <div class="col-12 col-md-1 text-center">
-                    @Html.DisplayFor(modelItem => item.ProvaTres)
-                </div>
-                <div class="col-12 col-md-1 text-center">
-                    @Html.DisplayFor(modelItem => item.ProvaFinal)
-                </div>
-                <div class="col-12 col-md-1 text-center">
-                    @Html.DisplayFor(modelItem => item.ProvaEspecial)
-                </div>
-                <div class="col-1">
-
-                    <div class="row">
-                        <div class="col-5">
-
-                            @Html.ActionLink("<i class='fas fa-edit' style='color: black;'></i>", "Editar", new { id = item.Id }, new { @datatoggle = "text-danger", @title="Editar notas" }) 
-                                                        
-                        </div>
-                        <div class="col-7">
-
-                            @Html.ActionLink("<i class='fas fa-user-minus' style='color: black;'></i>", "Editar", new { id = item.Id }, new { @datatoggle = "text-danger", @title = "Excluir aluno" }) 
-
-                        </div>
+                    <div class="col-12 col-md-1 text-center">
+                        @Html.DisplayFor(modelItem => item.ProvaUm)
                     </div>
+                    <div class="col-12 col-md-1 text-center">
+                        @Html.DisplayFor(modelItem => item.ProvaDois)
+                    </div>
+                    <div class="col-12 col-md-1 text-center">
+                        @Html.DisplayFor(modelItem => item.ProvaTres)
+                    </div>
+                    <div class="col-12 col-md-1 text-center">
+                        @Html.DisplayFor(modelItem => item.ProvaFinal)
+                    </div>
+                    <div class="col-12 col-md-1 text-center">
+                        @Html.DisplayFor(modelItem => item.ProvaEspecial)
+                    </div>
+                    <div class="col-1">
 
+                        <div class="row">
+                            <div class="col-5">
+
+                                <a data-toggle="modal" data-target="#ModalEdicao">
+                                    <span data-toggle="tooltip" title="Editar notas">
+                                        
+                                        @Ajax.ActionLink("Editar", "PreencheEdicao", "Aluno", new { Id = item.Id }, new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DivEdicao" })
+
+                                    </span>
+                                </a>
+
+
+                            </div>
+                            <div class="col-7">
+
+                                <span data-toggle="tooltip" title="Excluir aluno">
+                                    <a href="#" data-toggle="modal" data-target="#ModalExclusao" onmouseover="AlteraIdExclusao(@item.Id)">
+                                        <i class="fas fa-user-minus" style="color: black;"></i>
+                                    </a>
+                                </span>
+
+                            </div>
+                        </div>
+
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        }
 
-    }
+    </table>
 
-</table>
+
+    <script>
+
+        @ViewBag.Javascript
+
+        function AlteraIdExclusao(Id) {
+            $("#IdExclusao").val(Id);
+        }
+        
+        function FechaExclusao() {
+            document.getElementById("BotaoFechaExclusao").click();
+        }
+    </script>
+
+</div>
+

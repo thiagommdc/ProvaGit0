@@ -7,7 +7,7 @@ namespace AscProva.Modelo
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Insira o nome do aluno")]
+        [Required(ErrorMessage = "Insira o nome do aluno para cadastrá-lo")]
         public string Nome { get; set; }
 
         public string Turma { get; set; }

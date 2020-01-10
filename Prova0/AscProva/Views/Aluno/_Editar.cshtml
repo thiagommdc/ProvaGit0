@@ -1,60 +1,101 @@
-﻿@model IEnumerable<AscProva.Modelo.Alunos>
+﻿@model AscProva.Modelo.Alunos
 
-<div class="modal-header">
+    <div id="DivEdicao">
+        <div class="modal-header">
 
-    <h5 class="modal-title">@Html.LabelFor(model => model.Nome)</h5>
+            <h5 class="modal-title">@Model.Nome</h5>
 
-    <button type="button" class="close" data-dismiss="modal" style="outline: 0;">
-        <span>&times;</span>
-    </button>
-
-</div>
-<div class="modal-body">
-
-    <div class="row">
-        <div class="col-6">
-
-            <input type="hidden" value="@ViewBag.MediaUltimo" id="MediaUltimo">
-
-            @Html.HiddenFor(model => model.Media, new { htmlAttributes = new { @id = "Media" } })
-            @Html.HiddenFor(model => model.MediaEspecial, new { htmlAttributes = new { @id = "MediaEspecial" } })
-
-            @Html.EditorFor(model => model.ProvaUm, new { htmlAttributes = new { @class = "form-control my-1", id = "InputP1", placeholder = "Nota prova 1", data_toggle = "tooltip", title = "Primeira prova" } })
-
-            @Html.EditorFor(model => model.ProvaDois, new { htmlAttributes = new { @class = "form-control my-1", id = "InputP2", placeholder = "Nota prova 1", data_toggle = "tooltip", title = "Segunda prova" } })
-
-            @Html.EditorFor(model => model.ProvaTres, new { htmlAttributes = new { @class = "form-control my-1", id = "InputP3", placeholder = "Nota prova 1", data_toggle = "tooltip", title = "Terceira prova" } })
-
-            @Html.EditorFor(model => model.ProvaFinal, new { htmlAttributes = new { @class = "form-control my-1", id = "InputPf", placeholder = "Nota prova 1", data_toggle = "tooltip", title = "Prova final" } })
-
-            @Html.EditorFor(model => model.ProvaEspecial, new { htmlAttributes = new { @class = "form-control my-1", id = "InputPe", placeholder = "Nota prova 1", data_toggle = "tooltip", title = "Prova especial" } })
+            <button type="button" class="close" data-dismiss="modal" style="outline: 0;" id="BotaoFechaEdicao">
+                <span>&times;</span>
+            </button>
 
         </div>
-        <div class="col-6">
-            <div class="content text-center cs_09 cs_09_AprovadoEntreMelhores"
-                 id="ElementoCorFundoStatusAprovacao">
+        <div class="modal-body">
 
-                <div class="content cs_08 cs_08_Maior">
-                    <div class="cs_12">
+            <div class="row">
+                <div class="col-6">
 
-                        <h1 class=" text-white" id="ElementoMedia">
-                            </h2>
-                            <h5 class=" text-white"></h5>
+                    <input type="hidden" value="@ViewBag.MediaUltimo" id="MediaUltimo">
+
+                    <input type="hidden" id="Media" name="Media" value="@Model.Media">
+                    <input type="hidden" id="MediaEspecial" name="MediaEspecial" value="@Model.MediaEspecial">
+                    <input type="hidden" id="Id" name="Id" value="@Model.Id">
+
+                    <input type="text" maxlength="3" class="form-control my-1" id="ProvaUm" name="ProvaUm"
+                           placeholder="Nota prova 1" data-toggle="tooltip" data-original-title="Primeira prova" value="@Model.ProvaUm">
+
+                    <input type="text" maxlength="3" class="form-control my-1" id="ProvaDois" name="ProvaDois"
+                           placeholder="Nota prova 2" data-toggle="tooltip" data-original-title="Segunda prova" value="@Model.ProvaDois">
+
+                    <input type="text" maxlength="3" class="form-control my-1" id="ProvaTres" name="ProvaTres"
+                           placeholder="Nota prova 3" data-toggle="tooltip" data-original-title="Terceira prova" value="@Model.ProvaTres">
+
+                    <input type="text" maxlength="3" class="form-control my-1" id="ProvaFinal" name="ProvaFinal"
+                           placeholder="Nota final" data-toggle="tooltip" data-original-title="Prova final" value="@Model.ProvaFinal">
+
+                    <input type="text" maxlength="3" class="form-control my-1" id="ProvaEspecial" name="ProvaEspecial"
+                           placeholder="Nota especial" data-toggle="tooltip" data-original-title="Prova especial" value="@Model.ProvaEspecial">
+
+                </div>
+                <div class="col-6">
+                    <div class="content text-center cs_09 cs_09_AprovadoEntreMelhores"
+                         id="ElementoCorFundoStatusAprovacao">
+
+                        <div class="content cs_08 cs_08_Maior">
+                            <div class="cs_12">
+
+                                <h1 class=" text-white" id="ElementoMedia">
+                                    </h2>
+                                    <h5 class=" text-white">Média</h5>
+
+                            </div>
+                        </div>
+
+                        <div class="content cs_08 cs_08_Menor">
+                            <h4 class="display-5 text-white" style="margin: 0 auto"
+                                id="ElementoStatusAprovacao">
+                            </h4>
+                        </div>
 
                     </div>
                 </div>
-
-                <div class="content cs_08 cs_08_Menor">
-                    <h4 class="display-5 text-white" style="margin: 0 auto"
-                        id="ElementoStatusAprovacao">
-                    </h4>
-                </div>
-
             </div>
+
         </div>
+
+
+        <script>
+        @ViewBag.Javascript
+
+        $('#ProvaUm').keyup(function () { CalculoMedia(); });
+        $('#ProvaDois').keyup(function () { CalculoMedia(); });
+        $('#ProvaTres').keyup(function () { CalculoMedia(); });
+        $('#ProvaFinal').keyup(function () { CalculoMedia(); });
+        $('#ProvaEspecial').keyup(function () { CalculoMedia(); });
+
+        $('#ProvaUm').mask("#.#", { reverse: true });
+        $('#ProvaDois').mask("#.#", { reverse: true });
+        $('#ProvaTres').mask("#.#", { reverse: true });
+        $('#ProvaFinal').mask("#.#", { reverse: true });
+        $('#ProvaEspecial').mask("#.#", { reverse: true });
+
+        function AbreModalEdicao() {
+
+            document.getElementById("BotaoAbreModalEdicao").click();
+            setTimeout(function () { CalculoMedia(); }, 100)
+
+        }
+
+
+        function FechaEdicao() {
+
+            document.getElementById('BotaoFechaEdicao').click();
+        }
+
+
+        </script>
+
+
     </div>
-
-</div>
-
 
 

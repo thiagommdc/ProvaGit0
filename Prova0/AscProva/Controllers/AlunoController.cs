@@ -10,60 +10,60 @@ namespace AscProva.Controllers
 {
     public class AlunoController : Controller
     {
-        
+
+        AplicacaoAlunoMysql BancoDeDadosMysql;
+
+        //var BancoDeDados = new AplicacaoAluno();
+
+        public AlunoController()
+        {
+            BancoDeDadosMysql = new AplicacaoAlunoMysql();
+        }
+
         public ActionResult Index()
         {
-
-            var BancoDeDadosMysql = new AplicacaoAlunoMysql();
-
             return View(BancoDeDadosMysql.Selecionar(new Alunos()));
         }
-
+        
         public ActionResult Cadastrar(Alunos Aluno)
         {
+                        
+            ViewBag.Javascript = "FechaCadastro()";
 
-            if (!Request.IsAjaxRequest())
-                return View("Cadastrar");
-            
-            var BancoDeDados = new AplicacaoAluno();
-            var BancoDeDadosMysql = new AplicacaoAlunoMysql();
-
-            BancoDeDados.Salvar(Aluno);
             BancoDeDadosMysql.Salva(Aluno);
 
-            return PartialView("_Cadastrar");
+            return PartialView("_ListaAlunos", BancoDeDadosMysql.Selecionar(new Alunos()));
         }
 
+
+        public ActionResult PreencheEdicao(int Id)
+        {
+
+            ViewBag.Javascript = "AbreModalEdicao()";
+
+            return PartialView("_Editar", BancoDeDadosMysql.Selecionar(new Alunos() { Id = Id }).First());
+
+        }
 
         public ActionResult Editar(Alunos Aluno)
         {
 
-            var BancoDeDados = new AplicacaoAluno();
-            var BancoDeDadosMysql = new AplicacaoAlunoMysql();
+            ViewBag.Javascript = "FechaExclusao()";
 
-            if (!Request.IsAjaxRequest())
-            {
-                BancoDeDadosMysql.Selecionar(Aluno);
-                return PartialView("_Editar");
-            }
-
-            BancoDeDados.Salvar(Aluno);
             BancoDeDadosMysql.Atualiza(Aluno);
-            
-            return PartialView("_ListaAlunos");
+
+            return PartialView("_ListaAlunos", BancoDeDadosMysql.Selecionar(new Alunos()));
 
         }
-        
-        public ActionResult Excluir(Alunos Aluno)
+
+        public ActionResult Excluir(int Id)
         {
 
-            var BancoDeDados = new AplicacaoAluno();
-            var BancoDeDadosMysql = new AplicacaoAlunoMysql();
-            
-            BancoDeDados.Excluir(Aluno);
-            BancoDeDadosMysql.Excluir(Aluno);
+            ViewBag.Javascript = "FechaExclusao()";
 
-            return PartialView("_ListaAlunos");
+            BancoDeDadosMysql.Excluir(new Alunos(){ Id = Id );
+
+            return PartialView("_ListaAlunos", BancoDeDadosMysql.Selecionar(new Alunos()));
 
         }
 

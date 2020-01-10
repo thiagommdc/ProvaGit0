@@ -65,7 +65,12 @@ C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\System.Web
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\System.Web.WebPages.Razor.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\WebGrease.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.RepositorioEntity.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.RepositorioMysql.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\MySql.Data.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\EntityFramework.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Google.Protobuf.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\BouncyCastle.Crypto.dll
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Renci.SshNet.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.Aplicacao.pdb
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.Aplicacao.dll.config
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.Modelo.pdb
@@ -81,7 +86,11 @@ C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Antlr3.Run
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.RepositorioEntity.pdb
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.RepositorioEntity.dll.config
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.RepositorioMysql.pdb
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\MySql.Data.xml
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\EntityFramework.xml
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Google.Protobuf.xml
+C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Renci.SshNet.xml
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\pt-br\System.Web.Helpers.resources.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\pt-br\System.Web.Mvc.resources.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\pt-br\System.Web.Optimization.resources.dll
@@ -93,12 +102,3 @@ C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\obj\Debug\AscP
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\obj\Debug\AscProva.csproj.CopyComplete
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\obj\Debug\AscProva.dll
 C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\obj\Debug\AscProva.pdb
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.RepositorioMysql.dll
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\MySql.Data.dll
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Google.Protobuf.dll
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\BouncyCastle.Crypto.dll
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Renci.SshNet.dll
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\AscProva.RepositorioMysql.pdb
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\MySql.Data.xml
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Google.Protobuf.xml
-C:\Users\55219\Documents\projetos_testes\AscProva\Prova0\AscProva\bin\Renci.SshNet.xml

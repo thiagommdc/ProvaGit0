@@ -1,15 +1,16 @@
-$('#InputP1').keyup(function () { CalculoMedia(); });
-$('#InputP2').keyup(function () { CalculoMedia(); });
-$('#InputP3').keyup(function () { CalculoMedia(); });
-$('#InputPf').keyup(function () { CalculoMedia(); });
-$('#InputPe').keyup(function () { CalculoMedia(); });
+
+ function MouseOverTurma(Turma) {
+                            $("#Turma").val(Turma);
+                        }
+
+
 
 function CalculoMedia() {
 
     var Media, StatusAprovacao, ClasseStatus;
-    var Inputp1 = $('#InputP1').val();
-    var Inputp2 = $('#InputP2').val();
-    var Inputp3 = $('#InputP3').val();
+    var ProvaUm = $('#ProvaUm').val();
+    var ProvaDois = $('#ProvaDois').val();
+    var ProvaTres = $('#ProvaTres').val();
     var MediaUltimo = $('#MediaUltimo').val();
     var ClassePadraoDeElementoDeCorFundoStatusAprovacao = "content text-center cs_09 ";
 
@@ -17,7 +18,7 @@ function CalculoMedia() {
 
     if (MediaUltimo == "0") { MediaUltimo = 0 }
 
-    var MediaNormal = CalculoMediaNormal(Inputp1, Inputp2, Inputp3);
+    var MediaNormal = CalculoMediaNormal(ProvaUm, ProvaDois, ProvaTres);
 
     Media = MediaNormal;
 
@@ -38,7 +39,7 @@ function CalculoMedia() {
                 StatusAprovacao = "Aprovado entre<br>os melhores";
                 ClasseStatus = "cs_09_AprovadoEntreMelhores";
 
-                Media = CalculoMediaEspecial(Inputp1, Inputp2, Inputp3, Media);
+                Media = CalculoMediaEspecial(ProvaUm, ProvaDois, ProvaTres, Media);
 
             }
 
@@ -48,7 +49,7 @@ function CalculoMedia() {
             StatusAprovacao = "Recuperação"
             ClasseStatus = "cs_09_Recuperacao";
 
-            Media = CalculoMediaRecuperacao(Inputp1, Inputp2, Inputp3);
+            Media = CalculoMediaRecuperacao(ProvaUm, ProvaDois, ProvaTres, Media);
 
             if (Media >= 5) {
                 StatusAprovacao = "Aprovado na<br>Recuperação"
@@ -75,39 +76,39 @@ function DisponibilidadeCamposEdicaoNota(StatusAprovacao) {
     switch (StatusAprovacao) {
         case "Aprovado na<br>Recuperação":
 
-            $('#InputPf').prop("disabled", false);
-            $('#InputPe').prop("disabled", true);
-            $('#InputPe').val(0);
+            $('#ProvaFinal').prop("disabled", false);
+            $('#ProvaEspecial').prop("disabled", true);
+            $('#ProvaEspecial').val(0);
 
             break;
         case "Recuperação":
 
-            $('#InputPf').prop("disabled", false);
-            $('#InputPe').prop("disabled", true);
-            $('#InputPe').val(0);
+            $('#ProvaFinal').prop("disabled", false);
+            $('#ProvaEspecial').prop("disabled", true);
+            $('#ProvaEspecial').val(0);
 
             break;
         case "Aprovado":
 
-            $('#InputPf').prop("disabled", true);
-            $('#InputPe').val(0);
-            $('#InputPe').prop("disabled", true);
-            $('#InputPe').val(0);
+            $('#ProvaFinal').prop("disabled", true);
+            $('#ProvaEspecial').val(0);
+            $('#ProvaEspecial').prop("disabled", true);
+            $('#ProvaEspecial').val(0);
 
             break;
         case "Reprovado":
 
-            $('#InputPf').prop("disabled", true);
-            $('#InputPf').val(0);
-            $('#InputPe').prop("disabled", true);
-            $('#InputPe').val(0);
+            $('#ProvaFinal').prop("disabled", true);
+            $('#ProvaFinal').val(0);
+            $('#ProvaEspecial').prop("disabled", true);
+            $('#ProvaEspecial').val(0);
 
             break;
         case "Aprovado entre<br>os melhores":
 
-            $('#InputPf').prop("disabled", true);
-            $('#InputPf').val(0);
-            $('#InputPe').prop("disabled", false);
+            $('#ProvaFinal').prop("disabled", true);
+            $('#ProvaFinal').val(0);
+            $('#ProvaEspecial').prop("disabled", false);
 
             break;
 
@@ -115,31 +116,35 @@ function DisponibilidadeCamposEdicaoNota(StatusAprovacao) {
 
 }
 
-function CalculoMediaNormal(Inputp1, Inputp2, Inputp3) {
+function CalculoMediaNormal(ProvaUm, ProvaDois, ProvaTres) {
 
-    Inputp1 = Number(Inputp1);
-    Inputp2 = Number(Inputp2);
-    Inputp3 = Number(Inputp3);
+    ProvaUm = Number(ProvaUm);
+    ProvaDois = Number(ProvaDois);
+    ProvaTres = Number(ProvaTres);
 
     var P1Ponderacao = Number(1);
     var P2Ponderacao = Number(1.2);
     var P3Ponderacao = Number(1.4);
 
-    var MediaPonderada = ((Inputp1 * P1Ponderacao) + (Inputp2 * P2Ponderacao) + (Inputp3 * P3Ponderacao)) / (P1Ponderacao + P2Ponderacao + P3Ponderacao);
+    var MediaPonderada = ((ProvaUm * P1Ponderacao) + (ProvaDois * P2Ponderacao) + (ProvaTres * P3Ponderacao)) / (P1Ponderacao + P2Ponderacao + P3Ponderacao);
 
     MediaPonderada = Number(MediaPonderada);
 
     return MediaPonderada;
 }
 
-function CalculoMediaRecuperacao(MediaNormal) {
+function CalculoMediaRecuperacao(MediaNormal, Media) {
 
-    var InputPf = $('#InputPf').val();
+    var ProvaFinal = $('#ProvaFinal').val();
+    ProvaFinal = Number(ProvaFinal);
+
+    if (ProvaFinal == 0) {
+        return Media
+    }
 
     MediaNormal = Number(MediaNormal);
-    InputPf = Number(InputPf);
 
-    var Media = (MediaNormal + InputPf) / 2;
+    var Media = (MediaNormal + ProvaFinal) / 2;
 
     Media = Number(Media);
 
@@ -147,23 +152,23 @@ function CalculoMediaRecuperacao(MediaNormal) {
 
 }
 
-function CalculoMediaEspecial(Inputp1, Inputp2, Inputp3, Media) {
+function CalculoMediaEspecial(ProvaUm, ProvaDois, ProvaTres, Media) {
 
-    var InputPe = $('#InputPe').val();
-    InputPe = Number(InputPe);
+    var ProvaEspecial = $('#ProvaEspecial').val();
+    ProvaEspecial = Number(ProvaEspecial);
 
-    if (InputPe == 0) {
+    if (ProvaEspecial == 0) {
         return Media
     }
 
-    Inputp1 = Number(Inputp1);
-    Inputp2 = Number(Inputp2);
-    Inputp3 = Number(Inputp3);
+    ProvaUm = Number(ProvaUm);
+    ProvaDois = Number(ProvaDois);
+    ProvaTres = Number(ProvaTres);
 
     var P1Ponderacao = Number(1);
     var P2Ponderacao = Number(2);
 
-    var MediaPonderada = (Inputp1 + Inputp2 + Inputp3 + (InputPe * P2Ponderacao)) / (P1Ponderacao + P2Ponderacao);
+    var MediaPonderada = (ProvaUm + ProvaDois + ProvaTres + (ProvaEspecial * P2Ponderacao)) / (P1Ponderacao + P2Ponderacao);
 
     MediaPonderada = Number(MediaPonderada);
     $("#MediaEspecial").val(MediaPonderada);
@@ -175,11 +180,7 @@ function CalculoMediaEspecial(Inputp1, Inputp2, Inputp3, Media) {
 //===============================================
 
 
-$('#InputP1').mask("#.#", { reverse: true });
-$('#InputP2').mask("#.#", { reverse: true });
-$('#InputP3').mask("#.#", { reverse: true });
-$('#InputPf').mask("#.#", { reverse: true });
-$('#InputPe').mask("#.#", { reverse: true });
+
 
 $("#menu-toggle").click(function (e) {
     e.preventDefault();

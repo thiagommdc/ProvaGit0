@@ -40,13 +40,29 @@ body {
 }
 
 .cs_06 {
-  background-color: #81f79c;
+  color:white;
   border-radius: 10px;
 }
 
 .cs_07 {
   border-left: 5px solid #00f2ff;
 }
+
+
+
+.cs_07_Aprovado {
+  border-left: 5px solid #54eb13;
+}
+
+.cs_07_Recuperacao {
+  border-left: 5px solid #ebd913;
+}
+
+.cs_07_Reprovado {
+  border-left: 5px solid #eb4213;
+}
+
+
 
 .cs_08 {
   display: flex;

@@ -30,11 +30,17 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Turma da manhã</a>
+
+                    <input class="dropdown-item" type="submit" data-toggle="modal" data-target="#ModalInclusao" value="Turma da manhã" id="BtManha" name="BtManha" onmouseover="MouseOverTurma('Manhã')" />
+
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Turma da tarde</a>
+
+                    <input class="dropdown-item" type="submit" data-toggle="modal" data-target="#ModalInclusao" value="Turma da tarde" id="BtTarde" name="BtTarde" onmouseover="MouseOverTurma('Tarde')" />
+
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Turma da noite</a>
+
+                    <input class="dropdown-item" type="submit" data-toggle="modal" data-target="#ModalInclusao" value="Turma da noite" id="BtNoite" name="BtNoite" onmouseover="MouseOverTurma('Noite')" />
+
                 </div>
 
             </div>
@@ -85,9 +91,6 @@
                 <div class="container my-4 d-none d-md-block">
 
                     <div class="row">
-                        <div class="col-md-1 text-center">
-                            <i class="fas fa-trophy"></i>
-                        </div>
                         <div class="col-2">
                             Aluno
                         </div>
@@ -97,7 +100,7 @@
                         <div class="col-1">
                             Turma
                         </div>
-                        <div class="col-1 text-center">
+                        <div class="col-2 text-center">
                             Status
                         </div>
                         <div class="col-1 text-center" data-toggle="tooltip" title="Prova Especial">
@@ -139,8 +142,12 @@
             </p>
 
             <p>
-                <a href="#" data-toggle="modal" data-target="#ModalEdicao">Editar</a>
+                <a href="#" data-toggle="modal" data-target="#ModalEdicao" id="BotaoAbreModalEdicao">Editar</a>
             </p>
+
+
+
+
 
 
 
@@ -150,13 +157,30 @@
 
 
 
+
+
     <!-- Modal Inclusão -->
 
     <div class="modal fade" id="ModalInclusao" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
 
-            @Html.Partial("_ListaAlunos", Model)
+                @using (Ajax.BeginForm("Cadastrar", "Aluno", new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DivListaAlunos" }))
+                {
 
+                    @Html.Partial("_Cadastrar", new AscProva.Modelo.Alunos())
+
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">
+                            Incluir <i class="fas fa-angle-right ml-2" style="color: white;"></i>
+                        </button>
+
+                    </div>
+
+                }
+
+            </div>
         </div>
     </div>
 
@@ -166,17 +190,28 @@
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title">Deseja continuar?</h5>
-                    <button type="button" class="close" data-dismiss="modal" style="outline: 0;">
-                        <span>&times;</span>
-                    </button>
-                </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Não </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="delete">Sim </button>
-                </div>
+                @using (Ajax.BeginForm("Excluir", "Aluno", new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DivListaAlunos" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Deseja continuar?</h5>
+                        <button type="button" class="close" data-dismiss="modal" style="outline: 0;" id="BotaoFechaExclusao">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="hidden" id="IdExclusao" name="Id" value="" />
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Não </button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Sim
+                        </button>
+
+                    </div>
+                }
 
             </div>
         </div>
@@ -190,15 +225,16 @@
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
 
-                @using (Html.BeginForm("Editar", "Aluno"))
+
+                @using (Ajax.BeginForm("Editar", "Aluno", new AjaxOptions() { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DivListaAlunos" }))
                 {
                     @Html.AntiForgeryToken()
 
-                    @Html.Partial("_Editar", Model)
+                    @Html.Partial("_Editar", new AscProva.Modelo.Alunos())
 
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        <button type="submit" class="btn btn-primary">
                             Editar <i class="fas fa-angle-right ml-2" style="color: white;"></i>
                         </button>
 
@@ -212,13 +248,11 @@
 
     @section Scripts {
         @Scripts.Render("~/bundles/ascprovajs")
+
+        <script src="https://kit.fontawesome.com/a718e840fb.js" crossorigin="anonymous"></script>
     }
 
-    <script src="https://kit.fontawesome.com/a718e840fb.js" crossorigin="anonymous"></script>
 
-    @section Scripts{
-        @Scripts.Render("~/bundles/ajax")
-    }
 
 </body>
 

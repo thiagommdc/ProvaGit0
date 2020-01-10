@@ -8,7 +8,7 @@ namespace AscProva.Aplicacao
 {
     public class AplicacaoAlunoMysql
     {
-        
+
         private Repositorio BancoDeDados;
 
 
@@ -16,13 +16,13 @@ namespace AscProva.Aplicacao
         {
             BancoDeDados = new Repositorio();
         }
-        
+
         public void Salva(Alunos Aluno)
         {
             using (BancoDeDados = new Repositorio())
             {
                 var SQLExecuta = string.Format(
-                    "Insert into Alunos(Nome, Turma) values('{0}', '{1}')",
+                    "Insert into Alunos(Nome, Turma, Media, MediaEspecial, ProvaUm, ProvaDois, ProvaTres, ProvaFinal, ProvaEspecial) values('{0}', '{1}', 0, 0, 0, 0, 0, 0, 0)",
                     Aluno.Nome, Aluno.Turma
                     );
                 BancoDeDados.ExecutaComando(SQLExecuta);
@@ -36,22 +36,21 @@ namespace AscProva.Aplicacao
             using (BancoDeDados = new Repositorio())
             {
                 var SQLExecuta = string.Format(
-                    "update Alunos set Nome='{0}', Media='{1}', MediaEspecial='{2}', ProvaUm='{3}', ProvaDois='{4}', ProvaTres='{5}', ProvaFinal='{6}', ProvaEspecial='{7}' where Id='{8}'",
-                    Aluno.Nome,
-                    Aluno.Media,
-                    Aluno.MediaEspecial,
-                    Aluno.ProvaUm,
-                    Aluno.ProvaDois,
-                    Aluno.ProvaTres,
-                    Aluno.ProvaFinal,
-                    Aluno.ProvaEspecial,
+                    "update Alunos set Media='{0}', MediaEspecial='{1}', ProvaUm='{2}', ProvaDois='{3}', ProvaTres='{4}', ProvaFinal='{5}', ProvaEspecial='{6}' where Id='{7}'",                    
+                    Aluno.Media.ToString().Replace(",", "."),
+                    Aluno.MediaEspecial.ToString().Replace(",", "."),
+                    Aluno.ProvaUm.ToString().Replace(",", "."),
+                    Aluno.ProvaDois.ToString().Replace(",", "."),
+                    Aluno.ProvaTres.ToString().Replace(",", "."),
+                    Aluno.ProvaFinal.ToString().Replace(",", "."),
+                    Aluno.ProvaEspecial.ToString().Replace(",", "."),
                     Aluno.Id
                     );
                 BancoDeDados.ExecutaComando(SQLExecuta);
             }
 
         }
-        
+
         public void Excluir(Alunos Aluno)
         {
             using (BancoDeDados = new Repositorio())
@@ -79,7 +78,7 @@ namespace AscProva.Aplicacao
             if (Aluno.Id > 0)
             {
                 SQLExecuta = string.Format(
-                   "Select * from Aluno where Id={0}",
+                   "Select * from Alunos where Id={0}",
                    Aluno.Id
                    );
             }
@@ -89,7 +88,7 @@ namespace AscProva.Aplicacao
                 SQLComplemento = "";
 
                 if (Aluno.Nome != "") { SQLComplemento += " or Nome like '%" + Aluno.Nome + "%'"; }
-                
+
                 if (SQLComplemento == "")
                     goto SkipToEnd;
 
@@ -109,13 +108,13 @@ namespace AscProva.Aplicacao
                     Id = Convert.ToInt32(DataReader["Id"]),
                     Nome = DataReader["Nome"].ToString(),
                     Turma = DataReader["Turma"].ToString(),
-                    Media = Convert.ToDecimal(DataReader["Media"]),
-                    MediaEspecial = Convert.ToDecimal(DataReader["MediaEspecial"]),
-                    ProvaUm = Convert.ToDecimal(DataReader["ProvaUm"]),
-                    ProvaDois = Convert.ToDecimal(DataReader["ProvaDois"]),
-                    ProvaTres = Convert.ToDecimal(DataReader["ProvaTres"]),
-                    ProvaFinal = Convert.ToDecimal(DataReader["ProvaFinal"]),
-                    ProvaEspecial = Convert.ToDecimal(DataReader["ProvaEspecial"]),
+                    Media = Math.Round(Convert.ToDecimal(DataReader["Media"]), 1),
+                    MediaEspecial = Math.Round(Convert.ToDecimal(DataReader["MediaEspecial"]), 1),
+                    ProvaUm = Math.Round(Convert.ToDecimal(DataReader["ProvaUm"]), 1),
+                    ProvaDois = Math.Round(Convert.ToDecimal(DataReader["ProvaDois"]), 1),
+                    ProvaTres = Math.Round(Convert.ToDecimal(DataReader["ProvaTres"]), 1),
+                    ProvaFinal = Math.Round(Convert.ToDecimal(DataReader["ProvaFinal"]), 1),
+                    ProvaEspecial = Math.Round(Convert.ToDecimal(DataReader["ProvaEspecial"]), 1),
 
                 });
             }
